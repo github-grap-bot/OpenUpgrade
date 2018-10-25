@@ -2,7 +2,7 @@
 to help the matching process
 """
 
-renamed_modules = {
+_oca_odoo_renamed_modules = {
     # OCA/connector
     # Connector module has been unfolded in 2 modules in version 10.0:
     # connector and queue_job. We need to do this to correct upgrade both
@@ -21,20 +21,29 @@ renamed_modules = {
     'report_mrp_bom_matrix': 'mrp_bom_matrix_report',
     # OCA/sale-workflow:
     'sale_delivery_block': 'sale_stock_picking_blocking',
+    # OCA/sale-workflow: 7.0 -> 10.0
     'product_customer_code_sale': 'product_supplierinfo_for_customer_sale',
     # OCA/server-tools:
     'mail_log_messages_to_process': 'mail_log_message_to_process',
-    # OCA/stock-logistics-workflow:
+    # OCA/stock-logistics-workflow: 7.0 -> 10.0
     'product_customer_code_picking':
         'product_supplierinfo_for_customer_picking',
 }
 
-merged_modules = [
+_other_renamed_modules = {
+    # Add here your custom renamed modules
+}
+
+renamed_modules = _oca_odoo_renamed_modules.copy()
+renamed_modules.update(_other_renamed_modules)
+
+_oca_odoo_merged_modules = [
     ('account_full_reconcile', 'account'),
     ('mail_tip', 'mail'),
     ('mrp_operations', 'mrp'),
     ('project_timesheet', 'hr_timesheet'),
     ('sale_service', 'sale_timesheet'),
+    # Odoo 8.0 -> Odoo 10.0
     ('share', 'base'),
     ('web_tip', 'web'),
     ('web_view_editor', 'web'),
@@ -59,6 +68,12 @@ merged_modules = [
     # OCA/web
     ('web_easy_switch_company', 'web'),
 ]
+
+_other_merged_modules = [
+    # Add here your custom merged modules
+]
+
+merged_modules = _oca_odoo_merged_modules + _other_merged_modules
 
 renamed_models = {
 }
