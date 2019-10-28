@@ -2430,6 +2430,8 @@ class BaseModel(object):
 
 
     def _set_default_value_on_column(self, cr, column_name, context=None):
+        _logger.info("[GRAP-EXTRA-LOG] Model '%s'. Populating column '%s'" % (
+            self._name, column_name))
         # ideally, we should use default_get(), but it fails due to ir.values
         # not being ready
 
