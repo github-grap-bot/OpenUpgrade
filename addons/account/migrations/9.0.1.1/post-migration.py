@@ -285,7 +285,9 @@ def move_view_accounts(env):
     )
     openupgrade.logged_query(
         env.cr, """
-        DELETE FROM account_account
+        UPDATE account_account
+        SET name = name || ' (DISABLED BY OpenUpgrade 9.0)',
+        active = false
         WHERE %s = 'view'""", (AsIs(openupgrade.get_legacy_name('type')),)
     )
     # Remove constraint also on templates
@@ -1228,7 +1230,8 @@ def migrate(env, version):
     map_account_tax_template_type(cr)
     migrate_account_sequence_fiscalyear(cr)
     migrate_account_auto_fy_sequence(env)
-    fill_move_taxes(env)
+    # GRAP: TODO, make alternative simplier request
+    # fill_move_taxes(env)
     fill_account_invoice_tax_taxes(env)
     fill_blacklisted_fields(cr)
     reset_blacklist_field_recomputation()
