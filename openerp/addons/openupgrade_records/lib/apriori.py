@@ -144,3 +144,10 @@ renamed_models = {
     "crm.tracking.medium": "utm.medium",
     "crm.tracking.source": "utm.source",
 }
+
+renamed_modules.update({
+    "account_fiscal_company": "fiscal_company_account",
+    "base_fiscal_company": "fiscal_company_base",
+    "sales_team_fiscal_company": "fiscal_company_sales_team",
+    "product_fiscal_company": "fiscal_company_product",
+})
