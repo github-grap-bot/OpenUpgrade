@@ -28,4 +28,5 @@ def merge_quants(env):
 
 @openupgrade.migrate(use_env=True)
 def migrate(env, version):
+    return
     merge_quants(env)
