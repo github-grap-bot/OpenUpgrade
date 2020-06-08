@@ -16,7 +16,7 @@ Install some generic chart of accounts.
     ],
     'data': [
         'data/configurable_account_chart.xml',
-        'account_chart_template.yml',
+        # 'account_chart_template.yml',
     ],
     'test': [
         '../account/test/account_bank_statement.yml',
