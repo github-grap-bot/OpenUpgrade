@@ -201,6 +201,15 @@ def update_product_supplierinfo(env):
     Store the id of the original pricelistinfo on a custom integer field
     for later reference."""
     # Default currency for infos without a company
+    env.cr.execute(
+        """ALTER TABLE product_supplierinfo
+        ADD COLUMN discount FLOAT;""")
+    env.cr.execute(
+        """ALTER TABLE product_supplierinfo
+        ADD COLUMN discount2 FLOAT;""")
+    env.cr.execute(
+        """ALTER TABLE product_supplierinfo
+        ADD COLUMN discount3 FLOAT;""")
     default_currency_id = env['res.company'].search(
         [], order='id asc', limit=1).currency_id.id
     env.cr.execute(
@@ -209,8 +218,11 @@ def update_product_supplierinfo(env):
     env.cr.execute(
         """UPDATE product_supplierinfo ps
         SET openupgrade_migrated_from_pricelist_id = pp.id,
-        min_qty = pp.min_quantity,
+        min_qty = GREATEST(ps.min_qty, pp.min_quantity),
         price = pp.price,
+        discount = pp.discount,
+        discount2 = pp.discount2,
+        discount3 = pp.discount3,
         currency_id = %s
         FROM pricelist_partnerinfo pp
         WHERE pp.suppinfo_id = ps.id
@@ -230,6 +242,9 @@ def update_product_supplierinfo(env):
             currency_id,
             delay,
             min_qty,
+            discount,
+            discount2,
+            discount3,
             name,
             openupgrade_migrated_from_pricelist_id,
             price,
@@ -244,6 +259,9 @@ def update_product_supplierinfo(env):
             ps.currency_id,
             ps.delay,
             pp.min_quantity,
+            pp.discount,
+            pp.discount2,
+            pp.discount3,
             ps.name,
             pp.id,
             pp.price,
