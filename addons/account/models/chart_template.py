@@ -166,7 +166,7 @@ class AccountChartTemplate(models.Model):
         """
         self.ensure_one()
         # do not use `request.env` here, it can cause deadlocks
-        if request and request.session.uid:
+        if request and request.uid and request.session.uid:
             current_user = self.env['res.users'].browse(request.uid)
             company = current_user.company_id
         else:
@@ -187,7 +187,7 @@ class AccountChartTemplate(models.Model):
         """
         self.ensure_one()
         # do not use `request.env` here, it can cause deadlocks
-        if request and request.session.uid:
+        if request and request.uid and request.session.uid:
             current_user = self.env['res.users'].browse(request.uid)
             company = current_user.company_id
         else:
