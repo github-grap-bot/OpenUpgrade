@@ -39,6 +39,17 @@ renamed_modules = {
     'l10n_br_data_account_product': 'l10n_br_nfe_account'
 }
 
+# Commown
+renamed_modules.update({
+    # commown-odoo-addons -> OCA/account-payment
+    "payment_slimpay": "account_payment_slimpay",
+    # commown-odoo-addons -> OCA/e-commerce
+    "payment_slimpay_website_sale": "website_sale_payment_slimpay",
+    # commown-odoo-addons -> OCA/project
+    # (https://github.com/OCA/project/pull/685)
+    "rating_project_issue_nps": "project_rating_nps",
+})
+
 merged_modules = {
     # Odoo
     'auth_crypt': 'base',
