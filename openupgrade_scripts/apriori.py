@@ -62,6 +62,7 @@ merged_modules = {
     "pos_cash_rounding": "point_of_sale",
     "pos_kitchen_printer": "pos_restaurant",
     "pos_reprint": "point_of_sale",
+    "web_diagram": "web",
     "website_theme_install": "website",
     # OCA/margin-analysis
     "sale_order_margin_percent": "sale_margin",
